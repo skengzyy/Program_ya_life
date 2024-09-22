@@ -1,0 +1,70 @@
+@startuml
+
+package Accounting {
+    class Account {
+        - accountId: int
+        - balance: double
+        - inventory: Item[]
+
+        + Account()
+        + Account(int, double, int)
+        + getAccountId(): int
+        + setAccountId(int): void
+        + generateId(): int
+        + getBalance(): double
+        + setBalance(double): void
+        + getInventory(): Item[]
+        + setInventory(int): void
+        + accountData(): String
+        + buyItem(Item): boolean
+        + formatInformation(): String
+        + hashCode(): int
+    }
+
+    class Item {
+        - name: String
+        - cost: double
+
+        + Item(String, double)
+        + getName(): String
+        + setName(String): void
+        + getCost(): double
+        + setCost(double): void
+        + itemData(): String
+    }
+
+    class Stepper1 {
+        + main(String[]): void
+        + testGenerateId(): void
+        + testSetBalance(): void
+        + testSetInventory(): void
+        + testBuyItem(): void
+    }
+
+    class PremiumAccount extends Account{
+        - premiumFee: double
+        - discountRate: double
+        - feeCharged: boolean
+
+        + PremiumAccount(accountId: int, balance: double, anzahl: int, premiumFee: double, discountRate: double, feeCharged: boolean)
+        + getPremiumFee(): double
+        + setPremiumFee(premiumFee: double): void
+        + getDiscountRate(): double
+        + setDiscountRate(discountRate: double): void
+        + isFeeCharged(): boolean
+        + setFeeCharged(feeCharged: boolean): void
+        + chargeMonthly(): void
+        + buyItem(item: Item): boolean
+        + toString(): String
+    }
+
+    class Premiumtest {
+        + main(args: String[]): void
+    }
+}
+
+Stepper1 .> Item
+Stepper1 ..> Account
+Stepper2 --> PremiumAccount
+
+@enduml
